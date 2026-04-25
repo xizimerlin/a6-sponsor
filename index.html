@@ -1,29 +1,44 @@
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>寻找同行者 — 35,000公里真实公路纪实 · 品牌合作邀请</title>
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  * { margin:0; padding:0; box-sizing: border-box; }
   
   body {
-    font-family: 'Georgia', 'SimSun', serif;
+    font-family: 'Georgia', 'PingFang SC', 'Microsoft YaHei', serif;
     background: #0D0D0D;
     color: #E8E6E1;
-    display: flex;
-    justify-content: center;
-    padding: 20px;
+    /* 移除固定居中，改用自适应 */
+    padding: 0;
+    -webkit-text-size-adjust: 100%;
   }
   
   .page {
-    width: 210mm;
-    min-height: 297mm;
+    width: 100%;
+    max-width: 210mm;  /* 桌面端限制最大宽度 */
+    margin: 0 auto;
+    min-height: 100vh;
     background: #0D0D0D;
-    border: 1px solid #C9A84C44;
-    padding: 40px 48px;
+    border: none;  /* 手机上不要边框 */
+    padding: 24px 20px;
     position: relative;
     overflow: hidden;
+  }
+  
+  /* 桌面端加边框 */
+  @media (min-width: 768px) {
+    .page {
+      border: 1px solid #C9A84C44;
+      padding: 40px 48px;
+      min-height: 297mm;
+    }
+    body {
+      padding: 20px;
+    }
   }
   
   /* 顶部装饰线 */
@@ -52,17 +67,17 @@
   }
   
   .header .en-sub {
-    font-size: 11px;
-    letter-spacing: 4px;
+    font-size: 10px;
+    letter-spacing: 3px;
     color: #C9A84C;
     margin-bottom: 10px;
     font-family: 'Arial', sans-serif;
   }
   
   .header h1 {
-    font-size: 32px;
+    font-size: 28px;
     color: #E8D5A3;
-    letter-spacing: 6px;
+    letter-spacing: 4px;
     font-weight: bold;
     margin-bottom: 8px;
   }
@@ -70,7 +85,7 @@
   .header .subtitle {
     font-size: 13px;
     color: #D1D5DB;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
   }
   
   .section {
@@ -80,14 +95,14 @@
   .section-title {
     font-size: 14px;
     color: #C9A84C;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     margin-bottom: 12px;
     padding-left: 10px;
     border-left: 3px solid #C9A84C;
     font-weight: bold;
   }
   
-  /* 数据条 */
+  /* 数据条 - 手机端滚动 */
   .stats {
     display: flex;
     justify-content: space-around;
@@ -95,60 +110,73 @@
     padding: 14px 0;
     border-top: 1px solid #C9A84C22;
     border-bottom: 1px solid #C9A84C22;
+    flex-wrap: wrap;
+    gap: 10px;
   }
   
   .stat-item {
     text-align: center;
+    min-width: 60px;
   }
   
   .stat-num {
-    font-size: 26px;
+    font-size: 24px;
     color: #E8D5A3;
     font-weight: bold;
     display: block;
   }
   
   .stat-label {
-    font-size: 11px;
+    font-size: 10px;
     color: #9CA3AF;
     margin-top: 4px;
     display: block;
   }
   
-  /* 品类表格 */
+  /* 品类卡片 - 手机端单列 */
   .category-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 10px;
+  }
+  
+  /* 桌面端恢复双列 */
+  @media (min-width: 768px) {
+    .category-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .stats {
+      flex-wrap: nowrap;
+    }
   }
   
   .category-card {
     background: #00000044;
     border: 1px solid #C9A84C22;
     border-radius: 4px;
-    padding: 12px 14px;
+    padding: 14px 16px;
   }
   
   .category-card .icon {
-    font-size: 18px;
-    margin-bottom: 4px;
+    font-size: 20px;
+    margin-bottom: 6px;
   }
   
   .category-card .cat-name {
-    font-size: 13px;
+    font-size: 14px;
     color: #E8D5A3;
     font-weight: bold;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
   }
   
   .category-card .brands {
-    font-size: 11px;
+    font-size: 12px;
     color: #C9A84C;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
   }
   
   .category-card .form {
-    font-size: 10px;
+    font-size: 11px;
     color: #9CA3AF;
     line-height: 1.5;
   }
@@ -160,9 +188,9 @@
   }
   
   .return-list li {
-    padding: 8px 0 8px 20px;
+    padding: 10px 0 10px 20px;
     position: relative;
-    font-size: 12.5px;
+    font-size: 13px;
     color: #D1D5DB;
     line-height: 1.6;
     border-bottom: 1px solid #ffffff08;
@@ -174,11 +202,13 @@
     left: 0;
     color: #C9A84C;
     font-size: 8px;
-    top: 10px;
+    top: 12px;
   }
   
   .return-list li strong {
     color: #E8D5A3;
+    display: block;
+    margin-bottom: 2px;
   }
   
   /* 合作原则 */
@@ -186,22 +216,22 @@
     background: #C9A84C0D;
     border: 1px solid #C9A84C22;
     border-radius: 4px;
-    padding: 12px 16px;
+    padding: 14px 16px;
     margin-top: 14px;
   }
   
   .principles .prin-title {
-    font-size: 11px;
+    font-size: 12px;
     color: #C9A84C;
     letter-spacing: 2px;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     font-weight: bold;
   }
   
   .principles .prin-text {
-    font-size: 11px;
+    font-size: 12px;
     color: #9CA3AF;
-    line-height: 1.8;
+    line-height: 2;
   }
   
   /* 底部联系 */
@@ -211,11 +241,13 @@
     border-top: 1px solid #C9A84C33;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 10px;
   }
   
   .footer .contact {
-    font-size: 11px;
+    font-size: 12px;
     color: #9CA3AF;
     line-height: 1.8;
   }
@@ -233,9 +265,27 @@
     font-style: italic;
   }
   
+  /* 桌面端微调 */
+  @media (min-width: 768px) {
+    .header h1 {
+      font-size: 32px;
+      letter-spacing: 6px;
+    }
+    .header .en-sub {
+      font-size: 11px;
+      letter-spacing: 4px;
+    }
+    .stat-num {
+      font-size: 26px;
+    }
+    .stat-label {
+      font-size: 11px;
+    }
+  }
+  
   @media print {
     body { padding: 0; }
-    .page { border: none; }
+    .page { border: none; max-width: 100%; }
   }
 </style>
 </head>
@@ -298,7 +348,7 @@
       <div class="category-card">
         <div class="icon">📷</div>
         <div class="cat-name">摄影器材</div>
-        <div class="brands">GoPro · 大疆 · 索尼 ·  Insta360</div>
+        <div class="brands">GoPro · 大疆 · 索尼 · Insta360</div>
         <div class="form">内容创作伙伴，设备全程跟拍，画质见证实力</div>
       </div>
     </div>
@@ -308,11 +358,11 @@
   <div class="section">
     <div class="section-title">品牌将获得的回报</div>
     <ul class="return-list">
-      <li><strong>真实场景植入</strong>——非广告，是自然使用。用户信任度远高于传统KOL摆拍植入，播放完成率更高。</li>
-      <li><strong>多平台矩阵曝光</strong>——抖音 / 微博 / 视频号 / B站同步发布，预计总播放量500万+，互动量20万+。</li>
-      <li><strong>时间海报永久鸣谢</strong>——A1尺寸艺术微喷海报（申请进入奥迪博物馆）设品牌鸣谢区，与旅程共同被历史记录。</li>
-      <li><strong>极限环境测试报告</strong>——零下20°C西伯利亚冷启动、撒哈拉50°C高温耐受，真实数据比任何实验室报告都有说服力。</li>
-      <li><strong>家庭视角情感共鸣</strong>——7岁儿子的视角拍摄，引发父母群体强烈共鸣，女性+家庭用户精准触达。</li>
+      <li><strong>真实场景植入</strong>非广告，是自然使用。用户信任度远高于传统KOL摆拍植入，播放完成率更高。</li>
+      <li><strong>多平台矩阵曝光</strong>抖音 / 微博 / 视频号 / B站同步发布，预计总播放量500万+，互动量20万+。</li>
+      <li><strong>时间海报永久鸣谢</strong>A1尺寸艺术微喷海报（申请进入奥迪博物馆）设品牌鸣谢区，与旅程共同被历史记录。</li>
+      <li><strong>极限环境测试报告</strong>零下20°C西伯利亚冷启动、撒哈拉50°C高温耐受，真实数据比任何实验室报告都有说服力。</li>
+      <li><strong>家庭视角情感共鸣</strong>7岁儿子的视角拍摄，引发父母群体强烈共鸣，女性+家庭用户精准触达。</li>
     </ul>
   </div>
   
