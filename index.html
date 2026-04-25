@@ -10,34 +10,35 @@
   
   body {
     font-family: 'Georgia', 'PingFang SC', 'Microsoft YaHei', serif;
-    background: #0D0D0D;
-    color: #E8E6E1;
-    /* 移除固定居中，改用自适应 */
+    background: #F5F0E8;
+    color: #1A1A1A;
     padding: 0;
     -webkit-text-size-adjust: 100%;
   }
   
   .page {
     width: 100%;
-    max-width: 210mm;  /* 桌面端限制最大宽度 */
-    margin: 0 auto;
+    max-width: 210mm;
+    margin:0 auto;
     min-height: 100vh;
-    background: #0D0D0D;
-    border: none;  /* 手机上不要边框 */
+    background: #FEFCF8;
+    border: none;
     padding: 24px 20px;
     position: relative;
     overflow: hidden;
   }
   
-  /* 桌面端加边框 */
+  /* 桌面端加边框和阴影 */
   @media (min-width: 768px) {
     .page {
-      border: 1px solid #C9A84C44;
+      border:1px solid #C9A84C44;
       padding: 40px 48px;
       min-height: 297mm;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
     }
     body {
       padding: 20px;
+      background: #F5F0E8;
     }
   }
   
@@ -72,11 +73,12 @@
     color: #C9A84C;
     margin-bottom: 10px;
     font-family: 'Arial', sans-serif;
+    font-weight: 600;
   }
   
   .header h1 {
     font-size: 28px;
-    color: #E8D5A3;
+    color: #1A1A1A;
     letter-spacing: 4px;
     font-weight: bold;
     margin-bottom: 8px;
@@ -84,7 +86,7 @@
   
   .header .subtitle {
     font-size: 13px;
-    color: #D1D5DB;
+    color: #4A4A4A;
     letter-spacing: 1px;
   }
   
@@ -102,7 +104,7 @@
     font-weight: bold;
   }
   
-  /* 数据条 - 手机端滚动 */
+  /* 数据条 */
   .stats {
     display: flex;
     justify-content: space-around;
@@ -121,26 +123,25 @@
   
   .stat-num {
     font-size: 24px;
-    color: #E8D5A3;
+    color: #C9A84C;
     font-weight: bold;
     display: block;
   }
   
   .stat-label {
     font-size: 10px;
-    color: #9CA3AF;
+    color: #6B7280;
     margin-top: 4px;
     display: block;
   }
   
-  /* 品类卡片 - 手机端单列 */
+  /* 品类卡片 */
   .category-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 10px;
   }
   
-  /* 桌面端恢复双列 */
   @media (min-width: 768px) {
     .category-grid {
       grid-template-columns: 1fr 1fr;
@@ -151,10 +152,11 @@
   }
   
   .category-card {
-    background: #00000044;
+    background: #FFFFFF;
     border: 1px solid #C9A84C22;
     border-radius: 4px;
     padding: 14px 16px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
   }
   
   .category-card .icon {
@@ -164,7 +166,7 @@
   
   .category-card .cat-name {
     font-size: 14px;
-    color: #E8D5A3;
+    color: #1A1A1A;
     font-weight: bold;
     margin-bottom: 6px;
   }
@@ -173,11 +175,12 @@
     font-size: 12px;
     color: #C9A84C;
     margin-bottom: 6px;
+    font-weight: 500;
   }
   
   .category-card .form {
     font-size: 11px;
-    color: #9CA3AF;
+    color: #6B7280;
     line-height: 1.5;
   }
   
@@ -191,9 +194,9 @@
     padding: 10px 0 10px 20px;
     position: relative;
     font-size: 13px;
-    color: #D1D5DB;
+    color: #4A4A4A;
     line-height: 1.6;
-    border-bottom: 1px solid #ffffff08;
+    border-bottom: 1px solid #C9A84C11;
   }
   
   .return-list li::before {
@@ -206,14 +209,14 @@
   }
   
   .return-list li strong {
-    color: #E8D5A3;
+    color: #1A1A1A;
     display: block;
     margin-bottom: 2px;
   }
   
   /* 合作原则 */
   .principles {
-    background: #C9A84C0D;
+    background: #FFF9F0;
     border: 1px solid #C9A84C22;
     border-radius: 4px;
     padding: 14px 16px;
@@ -230,7 +233,7 @@
   
   .principles .prin-text {
     font-size: 12px;
-    color: #9CA3AF;
+    color: #6B7280;
     line-height: 2;
   }
   
@@ -248,7 +251,7 @@
   
   .footer .contact {
     font-size: 12px;
-    color: #9CA3AF;
+    color: #6B7280;
     line-height: 1.8;
   }
   
@@ -256,11 +259,12 @@
     color: #C9A84C;
     font-size: 10px;
     letter-spacing: 1px;
+    font-weight: 600;
   }
   
   .footer .slogan {
     font-size: 10px;
-    color: #6B7280;
+    color: #9CA3AF;
     letter-spacing: 2px;
     font-style: italic;
   }
@@ -284,8 +288,8 @@
   }
   
   @media print {
-    body { padding: 0; }
-    .page { border: none; max-width: 100%; }
+    body { padding:0; background: white; }
+    .page { border: none; max-width: 100%; box-shadow: none; }
   }
 </style>
 </head>
@@ -384,7 +388,6 @@
       手机：139-0472-0389<br>
       抖音：Wzt19922000（草原王·情怀老车）
     </div>
-    <div class="slogan">Vorsprung durch Technik</div>
   </div>
   
 </div>
